@@ -9,13 +9,20 @@ import session from 'express-session';
 import authRoute from './routes/auth.js';
 
 const app = express();
-
-// Middleware
-app.use(cors({
+const corsOptions = {
   origin: 'http://localhost:3001', // Frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
-}));
+  methods: ['GET', 'POST']
+  // Allow cookies/sessions
+};
+
+app.use(cors(corsOptions));
+// // Middleware
+// app.use(cors({
+//   origin: 'http://localhost:3001', // Frontend URL
+//   methods: ['GET', 'POST'],
+//   credentials: true,
+// }));
 
 app.use(
   session({
@@ -29,7 +36,12 @@ app.use(
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.get('/auth/user', (req, res) => {
+  if (!req.user) {
+    return res.status(401).send('User not authenticated');
+  }
+  res.json(req.user); // Send the authenticated user data
+});
 
 // Connect to MongoDB
 mongoose
