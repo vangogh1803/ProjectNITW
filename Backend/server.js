@@ -24,15 +24,24 @@ app.use(cors(corsOptions));
 //   credentials: true,
 // }));
 
-app.use(
-  session({
-    secret: process.env.SECRET_KEY, // Replace with a secure, randomly generated key
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }, // Set to true if using HTTPS
-  })
-);
-
+// app.use(
+//   session({
+//     secret: process.env.SECRET_KEY, // Replace with a secure, randomly generated key
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { secure: true }, // Set to true if using HTTPS
+//   })
+// );
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',  // Should be `true` in production
+    httpOnly: true,
+    sameSite: 'None',  // For cross-origin requests
+  },
+}));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
