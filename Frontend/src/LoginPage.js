@@ -34,10 +34,10 @@ const LoginPage = () => {
           accessToken: tokenResponse.access_token,
         };
 
-        // Optionally include refresh token if available
-        if (tokenResponse.refresh_token) {
-          payload.refreshToken = tokenResponse.refresh_token;
-        }
+        // // Optionally include refresh token if available
+        // if (tokenResponse.refresh_token) {
+        //   payload.refreshToken = tokenResponse.refresh_token;
+        // }
 
         // Send user data to backend for authentication/registration
         const response = await axios.post('http://localhost:5001/auth/google', payload, {
