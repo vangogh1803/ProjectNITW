@@ -50,7 +50,7 @@ mongoose
 
 // Load Google Service Account
 const serviceAccount = JSON.parse(
-  fs.readFileSync('/Users/Niyati/ProjectNITW2/Backend/durable-surfer-443516-m1-4244c4c1802f.json', 'utf8')
+  fs.readFileSync('C:\Users\devik\OneDrive\Desktop\PR-Project\ProjectNITW\Backend\durable-surfer-443516-m1-4244c4c1802f.json', 'utf8')
 );
 
 // Initialize Google Calendar API

@@ -2,6 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import User from '../models/User.js'; // Import your User model
 
+
 const router = express.Router();
 
 /**
@@ -75,12 +76,50 @@ router.post('/google', async (req, res) => {
       await user.save();
     }
 
-    console.log('User authenticated:', user);
+    /*console.log('User authenticated:', user);
     res.status(200).json({ message: 'User authenticated successfully', user });
-  } catch (error) {
+  }*/
+  
+    req.login(user, (err) => {
+      if (err) return res.status(500).send('Error logging in');
+      res.status(200).json({ message: 'User authenticated', user });
+    });
+  }catch (error) {
     console.error('Error during user authentication:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+/*router.get('/user', authenticateToken, (req, res) => {
+  res.json({ user: req.user });
+});*/
+
+
+/* Route: Get the authenticated user's details
+*/
+
+/*router.get('/user', authenticate, async (req, res) => {
+ try {
+   // `req.user` is populated by your authentication middleware
+   const user = await User.findById(req.user.id).select('-password'); // Exclude sensitive fields like password if applicable
+
+   if (!user) {
+     return res.status(404).json({ message: 'User not found' });
+   }
+
+   res.status(200).json({ user });
+ } catch (error) {
+   console.error('Error fetching user data:', error);
+   res.status(500).json({ message: 'Internal Server Error' });
+ }
+});*/
+
+/*router.get('/user', authenticateToken, (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ message: 'User not authenticated' });
+  }
+
+  res.status(200).json({ user: req.user });
+});*/
 
 export default router;

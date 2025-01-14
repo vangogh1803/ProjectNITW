@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 
+
 const MyCustomButton = ({ onClick, children }) => (
   <button onClick={onClick}>{children}</button>
 );
@@ -83,6 +84,7 @@ const LoginPage = () => {
     <div>
       <h1>Login</h1>
       <MyCustomButton onClick={() => login()}>Sign in with Google</MyCustomButton>
+      
     </div>
   );
 };

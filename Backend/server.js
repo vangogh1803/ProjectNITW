@@ -23,7 +23,7 @@ app.use(express.json()); // Enable parsing of JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 
 const serviceAccount = JSON.parse(
-  fs.readFileSync('/Users/Niyati/ProjectNITW2/Backend/durable-surfer-443516-m1-4244c4c1802f.json', 'utf8')
+  fs.readFileSync('C:/Users/devik/OneDrive/Desktop/PR-Project/ProjectNITW/Backend/durable-surfer-443516-m1-4244c4c1802f.json', 'utf8')
 );
 
 const calendar = google.calendar({
@@ -36,7 +36,7 @@ const calendar = google.calendar({
   ),
 });
 //fetch event
-app.get('/', async (req, res) => {
+app.get('/events', async (req, res) => {
   try {
     const response = await calendar.events.list({
       calendarId: process.env.CALENDAR_ID, // Store calendar ID in `.env`
@@ -52,7 +52,7 @@ app.get('/', async (req, res) => {
   }
 });
 //add event
-app.post('/api/events/', async (req, res) => {
+app.post('/events', async (req, res) => {
   console.log('Incoming request body:', req.body); // Debug log
 
   const { summary, start, end } = req.body;
@@ -119,24 +119,56 @@ app.use(session({
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-app.get('/auth/user', (req, res) => {
+app.get('/user', async (req, res) => {
   if (!req.user) {
     return res.status(401).send('User not authenticated');
   }
-  res.json(req.user); // Send the authenticated user data
+
+  try {
+    // Fetch user details from MongoDB using the user's Google ID
+    const user = await User.findOne({ googleId: req.user.googleId });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(user); // Send user details as JSON
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+    res.status(500).json({ message: 'Error fetching user details' });
+  }
+  //res.json(req.user); // Send the authenticated user data
 });
 
 // Connect to MongoDB
-mongoose
-  .connect(process.env.MONGODB_URI) // Replace with your MongoDB URI
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.error('Error connecting to MongoDB:', err));
-
+// mongoose
+//   .connect(process.env.MONGODB_URI) // Replace with your MongoDB URI
+//   .then(() => console.log('MongoDB Connected'))
+//   .catch((err) => console.error('Error connecting to MongoDB:', err));
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  ssl: true,
+  tlsInsecure: true,
+})
+.then(() => console.log('MongoDB Connected'))
+.catch((err) => console.error('Error connecting to MongoDB:', err));
 // Routes
 app.use('/auth', authRoute);
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+
+
+
+
+
+
+
+
+
+
 // import cors from 'cors';
 // import express from 'express';
 // import mongoose from 'mongoose';

@@ -2,6 +2,7 @@ import React from 'react';
 import { GoogleOAuthProvider} from '@react-oauth/google';
 import LoginPage from './LoginPage';
 import Events from './Events';
+import UserPage from './UserPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Wrap your application with GoogleOAuthProvider in your main entry file (e.g., index.js)
@@ -11,6 +12,7 @@ const App = () => (
       <Routes>
       <Route path="/" element= {<LoginPage />}/>{}
       <Route path="/Events" element={<Events />  } />{}
+      <Route path="/UserPage" element={<UserPage />} />
       </Routes>
     </Router>
   </GoogleOAuthProvider>
