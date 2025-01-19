@@ -1,0 +1,149 @@
+/* Custom Calendar Styles */
+.rbc-calendar {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+/* Toolbar */
+.rbc-toolbar {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Toolbar buttons */
+.rbc-btn {
+  background-color: #4285f4;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.rbc-btn:hover {
+  background-color: #3367d6;
+}
+
+/* Day cell styling */
+.rbc-day {
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.rbc-day-number {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #202124;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.rbc-day-number:hover {
+  background-color: #f1f3f4;
+  color: #4285f4;
+}
+
+/* Active/current day */
+.rbc-day-number.rbc-now {
+  background-color: #4285f4;
+  color: white;
+}
+
+/* Event block styles */
+.rbc-event {
+  background-color: #d9e7fe;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  color: #202124;
+  margin-bottom: 2px;
+}
+
+.rbc-event:hover {
+  background-color: #c4d9f7;
+}
+
+/* Week and month header styling */
+.rbc-header {
+  background-color: #f1f1f1;
+  padding: 10px 0;
+  color: #5f6368;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Today button in the toolbar */
+.rbc-toolbar button {
+  background-color: #fff;
+  color: #4285f4;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 14px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #f1f3f4;
+  border-color: #4285f4;
+}
+
+/* Event tooltip (if you have tooltips) */
+.rbc-tooltip {
+  background-color: #202124;
+  color: white;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom Calendar Styles
+.rbc-calendar {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rbc-toolbar {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.rbc-btn {
+  background-color: #4285f4;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.rbc-day {
+  text-align: center;
+}
+
+.rbc-day-number {
+  font-size: 1rem;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+}
+
+.rbc-day-number:hover {
+  background-color: #f1f1f1;
+  border-radius: 50%;
+} */

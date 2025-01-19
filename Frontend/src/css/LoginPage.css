@@ -1,0 +1,49 @@
+/* Global styles for the body */
+.login-page {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #081222;
+  height: 100vh; /* Make the page fill the viewport height */
+  /**background-image: url('/Users/Niyati/ProjectNITW2/Frontend/src/css/watercolor-texture-background.jpg'); /* Light background color */
+}
+
+/* Style for the container div */
+.login-container {
+  text-align: center;
+  padding: 10px;
+  background-color:rgba(255, 255, 255, 0.607);
+  border-radius: 10px;
+  border: rgb(0, 0, 0) solid;
+  width: 300px;
+  height: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the container */
+}
+
+/* Style for the heading */
+h1 {
+  margin-bottom: 50px;
+  color: #090505;
+  font-size: 40px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Style for the custom button */
+.login-button {
+  padding: 20px 20px;
+  background-color: #36624d77; /* Google Blue */
+  color: rgb(255, 241, 241);
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border: rgb(0, 0, 0) solid;
+  border-radius: 28px;
+  cursor: pointer;
+  margin-bottom: 50px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #357ae8; /* Darker Google Blue on hover */
+}

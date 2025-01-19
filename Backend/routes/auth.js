@@ -4,9 +4,27 @@ import User from '../models/User.js'; // Import your User model
 
 const router = express.Router();
 
-/**
- * Route: Redirect to Google for authentication
- */
+// Route to fetch the currently authenticated user's details
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    // User is authenticated, proceed to the next middleware
+    return next();
+  }
+  // User is not authenticated
+  return res.status(401).json({ message: "Unauthorized" });
+}
+router.get('/auth/user', (req, res) => {
+  console.log('req=',req)
+  // if (req.isAuthenticated()) 
+  if(req.isAuthenticated()){
+    const { name, profilePicture, email } = req.user; // Extract user details
+    res.status(200).json({ name, profilePicture, email });
+  } else {
+    res.status(401).json({ message: 'Unauthorized: Please log in.' });
+  }
+  
+});
+
 router.get(
   '/auth/google',
   passport.authenticate('google', {
@@ -37,6 +55,7 @@ router.get(
           email: emails[0]?.value, // Ensure email exists
           profilePicture: photos[0]?.value, // Ensure photo exists
         });
+        req.session.user = user;
 
         await user.save();
         console.log('New user created:', user);
@@ -74,13 +93,15 @@ router.post('/google', async (req, res) => {
 
       await user.save();
     }
-
+    req.session.user = user;
+    console.log('Session User:', req.session.user);  // Log session data
     console.log('User authenticated:', user);
     res.status(200).json({ message: 'User authenticated successfully', user });
   } catch (error) {
     console.error('Error during user authentication:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
+
 });
 
 export default router;

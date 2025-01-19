@@ -1,0 +1,22 @@
+.user-page {
+  text-align: center;
+  margin: 50px;
+}
+
+.user-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 20px 0;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.2rem;
+  text-align: center;
+}

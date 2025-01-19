@@ -1,12 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
+import './css/LoginPage.css';
+import  { useEffect } from 'react';
+
 
 const MyCustomButton = ({ onClick, children }) => (
-  <button onClick={onClick}>{children}</button>
+  <button className='login-button' onClick={onClick}>{children}</button>
 );
 
 const LoginPage = () => {
+
+  useEffect(() => {
+    // Add a unique class to the <body> tag when this component is mounted
+    document.body.className = 'login-page';
+
+    // Cleanup: Remove the class when the component is unmounted
+    return () => {
+      document.body.className = '';
+    };
+  }, []);
   const login = useGoogleLogin({ 
     onSuccess: async (tokenResponse) => {
       console.log('Login Success:', tokenResponse);
@@ -80,7 +93,7 @@ const LoginPage = () => {
   });
 
   return (
-    <div>
+    <div className='login-container'>
       <h1>Login</h1>
       <MyCustomButton onClick={() => login()}>Sign in with Google</MyCustomButton>
     </div>
